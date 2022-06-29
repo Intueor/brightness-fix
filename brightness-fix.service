@@ -1,0 +1,8 @@
+[Unit]
+Description=Fix last brightness value at startup
+
+[Service]
+ExecStart=/usr/bin/brightness-fix /sys/class/backlight/acpi_video1/brightness /sys/class/backlight/amdgpu_bl0/brightness 5.1
+
+[Install]
+WantedBy=multi-user.target

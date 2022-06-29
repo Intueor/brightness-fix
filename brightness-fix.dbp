@@ -1,0 +1,61 @@
+[DEBREATE-0.7.13]
+<<CTRL>>
+Package: brightness-fix
+Version: 1.0
+Maintainer: Ivan Timofeev <procyon1980@mail.ru>
+Architecture: amd64
+Priority: optional
+Description: Restores brightness value at login for Xubuntu 20.04.4 LTS.
+ Restores brightness at login according saved value.
+[ acpi_backlight=video ] need to be added to the kernel options in GRUB on some machines.
+Edit [ /etc/systemd/system/brightness-fix.service ] and run [ $sudo systemctl daemon-reload ] to change paths if necessary.
+
+<</CTRL>>
+<<FILES>>
+1
+/home/ivan/Sources/Qt_Projects/Brightness_fix/brightness-fix.service -> brightness-fix.service -> /etc/systemd/system/
+/home/ivan/Sources/Qt_Projects/build-Brightness_fix-Desktop_Qt_6_0_4_GCC_64bit-Release/brightness-fix* -> brightness-fix -> /usr/bin
+<</FILES>>
+<<SCRIPTS>>
+<<PREINST>>
+0
+<</PREINST>>
+<<POSTINST>>
+1
+#!/bin/sh
+systemctl enable brightness-fix.service
+systemctl daemon-reload
+<</POSTINST>>
+<<PRERM>>
+1
+#!/bin/sh
+systemctl disable brightness-fix.service
+<</PRERM>>
+<<POSTRM>>
+0
+<</POSTRM>>
+<</SCRIPTS>>
+<<CHANGELOG>>
+<<DEST>>DEFAULT<</DEST>>
+brightness-fix (1.0) focal; urgency=low
+
+  * Initial version.
+
+ -- Ivan Timofeev <procyon1980@mail.ru>  Wed, 29 Jun 2022 20:30:31 +0300
+
+<</CHANGELOG>>
+<<COPYRIGHT>>
+brightness-fix
+Copyright © 2022 Ivan Timofeev [procyon1980@mail.ru]
+
+/usr/share/common-licenses/GPL-3
+<</COPYRIGHT>>
+<<MENU>>
+0
+<</MENU>>
+<<BUILD>>
+0
+1
+1
+strip
+<</BUILD>>
